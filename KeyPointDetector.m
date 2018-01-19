@@ -2,9 +2,10 @@ classdef KeyPointDetector<handle
     properties
         norm_img_size = [248, 248];
         net_output_size = [62, 62];
-        keypoint_names  = {'Right Ankle', 'Right Knee', 'Right Hip', 'Left Hip', 'Left Knee', ...
-            'Left Ankle', 'Torso', 'Neck', 'Lower Head', 'Upper Head', 'Right Wirst', ...
-            'Right Elbow', 'Right Shoulder', 'Left Shoulder', 'Left Elbow', 'Left Wirst'};
+        %keypoint_names  = {'Right Ankle', 'Right Knee', 'Right Hip', 'Left Hip', 'Left Knee', ...
+        %    'Left Ankle', 'Torso', 'Neck', 'Lower Head', 'Upper Head', 'Right Wirst', ...
+        %    'Right Elbow', 'Right Shoulder', 'Left Shoulder', 'Left Elbow', 'Left Wirst'};
+        keypoint_names = {'l1','l2','l3','l4','r1','r2','r3','r4'};
         gpu_id = -1;
         scales = [];
         

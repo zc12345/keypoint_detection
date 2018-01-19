@@ -14,8 +14,8 @@ addpath('model-train');
 USE_GPU = 0; % 1 for GPU
 img_fn = 'sample_img.jpg';
 
-DEMO_MODEL_FN = 'keypoint-v4.mat';
-MATCONVNET_DIR = '../matconvnet-b23/';
+DEMO_MODEL_FN = './data/keypoint-netv1.mat';
+MATCONVNET_DIR = '../matconvnet/';
 
 %
 % Compile matconvnet
@@ -47,7 +47,7 @@ fprintf(1, '\nDetecting keypoints in image : %s', img_fn);
 img = imread(img_fn);
 figure('Name', 'Detected Keypoints');
 imshow(img); hold on;
-plot(kpx, kpy, 'r.', 'MarkerSize', round(size(img,2)/10)); hold on;
+plot(kpx, kpy, 'r.', 'MarkerSize', round(size(img,2)/25)); hold on;
 
 voffset = -10;
 for i=1:length(kpname)

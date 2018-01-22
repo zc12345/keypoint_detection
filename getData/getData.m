@@ -65,5 +65,5 @@ data = struct('annolist',annolist,'img_train',img_train);
 
 % put all data into struct data
 
-save('./data/test1.mat','data');
+save('./data/rawdata.mat','data');
 disp('over');

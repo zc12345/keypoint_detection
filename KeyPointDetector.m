@@ -5,7 +5,7 @@ classdef KeyPointDetector<handle
         %keypoint_names  = {'Right Ankle', 'Right Knee', 'Right Hip', 'Left Hip', 'Left Knee', ...
         %    'Left Ankle', 'Torso', 'Neck', 'Lower Head', 'Upper Head', 'Right Wirst', ...
         %    'Right Elbow', 'Right Shoulder', 'Left Shoulder', 'Left Elbow', 'Left Wirst'};
-        keypoint_names = {'l1','l2','l3','l4','r1','r2','r3','r4'};
+        keypoint_names = {'l1','l2','l3','l4','r4','r3','r2','r1'};
         gpu_id = -1;
         scales = [];
         

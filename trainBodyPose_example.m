@@ -35,15 +35,16 @@ opts.aug=0;
 opts.NoAug=1; %used for calling the correct imdb creation function
 
 opts.batchSize = 20;
-opts.numEpochs = 50 ;
+opts.numEpochs = 50;
+%opts.numEpochs = 50 ;
 opts.learningRate = [0.00001*ones(1, 30) 0.000005*ones(1, 5) 0.000001*ones(1, 50)] ;
 opts.batchNormalization = 1;%useful for big networks
 
 %GPU
 %opts.gpus = [0];
 
-opts.outNode=5;%if heatmaps loss, then number of heatmaps
-opts.outPairNode=4;% pairwise terms
+opts.outNode=8;%if heatmaps loss, then number of heatmaps
+opts.outPairNode=7;% pairwise terms
 opts.inNode=3;
 opts.lossFunc='l2loss-heatmap';
 opts.lossFunc2='l2loss-pairwiseheatmap';
@@ -118,7 +119,7 @@ opts.ignoreRest=0; %quasi single human training
 
 opts.pairHeatmap=1; %generate heatmaps for pairs of body parts
 %opts.bodyPairs = [1 2 3 4 5 7 8 9 11 12 13 14 14 15 7; 2 3 7 5 6 4 10 10 12 13 8 8 15 16 8]; %full body - MPI
-opts.bodyPairs = [1 2 3 4; 3 4 5 5];
+opts.bodyPairs = [1 2 3 4 5 6 7 ; 2 3 4 5 6 7 8];
 opts.magnif=12;%amplifier for the body heatmaps
 opts.facX=0.15;%pairwise heatmap width (def. 0.15)
 opts.facY=0.08;%pairwise heatmap height
@@ -128,10 +129,12 @@ opts.imdbfn =@getImdbNoAug;
 
 opts = vl_argparse(opts, varargin);
 
+tic;
 %create imdb and train
 cnn_regressor_dag(opts);
 %save model
 save_net(net);
+toc;
 % -------------------------------------------------------------------------
 function save_net(net)
 % -------------------------------------------------------------------------
@@ -140,4 +143,5 @@ net.mode = 'normal';
 net.holdOn = 0;
 
 net = net.saveobj() ;
-save('./data/keypoint-netv1.mat', 'net') ;
+save('./data/keypoint-netv2.mat', 'net') ;
+disp(datestr(now));

@@ -6,8 +6,10 @@ if strcmp(jnts,'mpi')==1
     poseGTresc(idx,1)=leng-poseGTresc(idx,1); %change origin
     temp=poseGTresc;
     poseGTresc=temp;
-    poseGTresc(1,:)=temp(2,:);
-    poseGTresc(3,:)=temp(4,:);
+    poseGTresc(1,:)=temp(8,:);
+    poseGTresc(2,:)=temp(7,:);
+    poseGTresc(3,:)=temp(6,:);
+    poseGTresc(4,:)=temp(5,:);
     %poseGTresc(1,:)=temp(6,:);
     %poseGTresc(6,:)=temp(1,:);
     %poseGTresc(2,:)=temp(5,:);

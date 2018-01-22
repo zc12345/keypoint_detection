@@ -274,10 +274,10 @@ for i=1:numel(batch)
         sx = round(linspace(dx, sz(2)+dx-1, opts.imageSize(2))) ;
         sy = round(linspace(dy, sz(1)+dy-1, opts.imageSize(1))) ;
         
-        if flip
-            sx = fliplr(sx) ;
-            tempY = flipKeyPointsCoords(opts.imageSize(2),tempY,opts.flipFlg); %flip keypoints
-        end
+        %if flip
+        %    sx = fliplr(sx) ;
+        %    tempY = flipKeyPointsCoords(opts.imageSize(2),tempY,opts.flipFlg); %flip keypoints
+        %end
         
         %crop extra points
         if sum(size(tempRest))>0
@@ -293,9 +293,9 @@ for i=1:numel(batch)
                 
                 clear idx;
                 
-                if flip
-                    tempRest(:,:,j) = flipKeyPointsCoords(opts.imageSize(2), tempRest(:,:,j),opts.flipFlg);
-                end
+         %       if flip
+         %           tempRest(:,:,j) = flipKeyPointsCoords(opts.imageSize(2), tempRest(:,:,j),opts.flipFlg);
+         %       end
                 
                 %explude the out-of-plane points
                 idx= (tempRest(:,1,j) > numel(sx)) | (tempRest(:,1,j) < 1); %X coord.

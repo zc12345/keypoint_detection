@@ -16,7 +16,7 @@ baseW = 300;
 sets_train = zeros(length(data.img_train),1);%!data.img_train
 cnt = 0;
 cnt_test = 0;
-point_num = 5;
+point_num = 8;
 
 %h = waitbar(0,'processing dataset......');
 for i = 1:length(data.img_train)%!data.img_train
@@ -77,7 +77,7 @@ end
 % load raw annotation data
 function data = load_data(data_path)
 
-filename = 'test1';
+filename = 'rawdata';
 load([data_path, filename, '.mat']);
 testMap = zeros(numel(data.annolist),2);
 N = length(data.annolist);

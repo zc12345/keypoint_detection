@@ -8,7 +8,7 @@ ptsAll_train=[];
 imgPath_train=[];
 ptsAll_test=[];
 imgPath_test=[];
-point_num = 5;
+point_num = 8;
 idx=1:point_num;
 
 for i=1:numel(sets_train_idx)

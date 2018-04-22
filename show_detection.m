@@ -7,7 +7,7 @@ addpath('model-train');
 USE_GPU = 0; % 1 for GPU
 
 model_dir = './data/';
-model_file = 'keypoint-netv3-noflip.mat';
+model_file = 'keypoint-netv2-noflip.mat';
 model_fn = [model_dir, model_file];
 matconvnet_dir = '../matconvnet/';
 img_dir = './data/validation/image/';
@@ -25,7 +25,7 @@ img_dircell = struct2cell(img_dirs)';
 img_names = img_dircell(:, 1);
 
 % show detection result
-for i = 1:numel(img_names)/5
+for i = 1:numel(img_names)
     img_fn = [img_dir, char(img_names(i))];
     show(keypoint_detector, img_fn);
 end
@@ -45,5 +45,5 @@ for i = 1:numel(kpx)
     fprintf('\n%s\tat\t(%d,%d)', kpname{i}, kpx(i), kpy(i));
 end
 hold off;
-pause(2);
+pause(1);
 end

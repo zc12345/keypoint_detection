@@ -12,9 +12,9 @@ addpath('model-train');
 
 % Update these according to your requirements
 USE_GPU = 0; % 1 for GPU
-img_fn = './data/test/00505c.jpg';
+img_fn = './sample_img.jpg';
 
-DEMO_MODEL_FN = './data/keypoint-netv3-noflip.mat';
+DEMO_MODEL_FN = './data/keypoint-netv2-noflip.mat';
 MATCONVNET_DIR = '../matconvnet/';
 
 %

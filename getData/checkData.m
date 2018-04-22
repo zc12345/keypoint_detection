@@ -16,7 +16,7 @@ baseW = 300;
 sets_train = zeros(length(data.img_train),1);%!data.img_train
 cnt = 0;
 cnt_test = 0;
-point_num = 8;
+point_num = 16;
 
 %h = waitbar(0,'processing dataset......');
 for i = 1:length(data.img_train)%!data.img_train

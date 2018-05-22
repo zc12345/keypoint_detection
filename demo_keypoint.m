@@ -14,7 +14,7 @@ addpath('model-train');
 USE_GPU = 0; % 1 for GPU
 img_fn = './sample_img.jpg';
 
-DEMO_MODEL_FN = './data/keypoint-netv2-noflip.mat';
+DEMO_MODEL_FN = './models/keypoint-netv4-16points.mat';
 MATCONVNET_DIR = '../matconvnet/';
 
 %

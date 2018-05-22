@@ -1,8 +1,8 @@
 function evaluation()
 
-GTdir = '../getData/data/validation/annotation/';
-predDir = '../getData/data/validation/prediction/';
-imgDir = '../getData/data/validation/image/';
+GTdir = '../../preprocessData/data/validation/annotation/';
+predDir = '../../preprocessData/data/validation/prediction/';
+imgDir = '../../preprocessData/data/validation/image/';
 batch_eval(GTdir, predDir, imgDir);
 
 end
@@ -15,17 +15,18 @@ img_args = struct2cell(dir([imgDir,'*.jpg']));
 GT_fns = GT_args(1,:);
 pred_fns = pred_args(1,:);
 img_fns = img_args(1,:);
-
+loss = 0;
 for i = 1:numel(GT_fns)
     GTpath = char(fullfile(GTdir, GT_fns(i)));
     predPath = char(fullfile(predDir, pred_fns(i)));
     imgPath = char(fullfile(imgDir, img_fns(i)));
-    single_eval(GTpath, predPath, imgPath); 
+    single_loss = single_eval(GTpath, predPath, imgPath); 
+    loss = loss + single_loss;
+end
+disp(sprintf('========\ntotal loss=%f',loss));
 end
 
-end
-
-function single_eval(GTpath, predPath, imgPath)
+function loss = single_eval(GTpath, predPath, imgPath)
 
 [annoKpx, annoKpy] = getXml(GTpath);
 [GTkpx, GTkpy] = gen_line(annoKpx, annoKpy);

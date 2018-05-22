@@ -7,12 +7,10 @@ addpath('model-train');
 
 USE_GPU = 0; % 1 for GPU
 
-model_dir = '../models/';
-model_file = 'keypoint-netv2-noflip.mat';
-model_fn = [model_dir, model_file];
+model_fn = '../models/keypoint-netv4-16points.mat';
 matconvnet_dir = '../../matconvnet/';
-img_dir = '../../preprocessData/data/validation/image/';
-prediction_dir = '../../preprocessData/data/validation/prediction/';
+img_dir = '../data/val-sequence/image/';
+prediction_dir = '../data/val-sequence/prediction/';
 
 if exist(prediction_dir) == 0
     mkdir(prediction_dir);
@@ -33,7 +31,7 @@ for i = 1:numel(img_names)
     img_fn = [img_dir, char(img_names(i))];
     fn = char(img_names(i));
     k = find('.' == fn);
-    prediction_fn = [prediction_dir, fn(1:k-1),'-8point.txt'];
+    prediction_fn = [prediction_dir, fn(1:k-1),'-16point.txt'];
     disp(prediction_fn);%show file name
     gen_prediction(keypoint_detector, img_fn, prediction_fn);
     %show(keypoint_detector, img_fn);

@@ -1,8 +1,8 @@
 function evaluation()
 
-GTdir = '../../preprocessData/data/validation/annotation/';
-predDir = '../../preprocessData/data/validation/prediction/';
-imgDir = '../../preprocessData/data/validation/image/';
+GTdir = '../data/val-sequence/annotation/';
+predDir = '../data/val-sequence/prediction/';
+imgDir = '../data/val-sequence/image/';
 batch_eval(GTdir, predDir, imgDir);
 
 end
@@ -24,6 +24,7 @@ for i = 1:numel(GT_fns)
     loss = loss + single_loss;
 end
 disp(sprintf('========\ntotal loss=%f',loss));
+disp(sprintf('========\naverage loss=%f',loss/numel(GT_fns)));
 end
 
 function loss = single_eval(GTpath, predPath, imgPath)

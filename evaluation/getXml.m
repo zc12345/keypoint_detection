@@ -1,4 +1,5 @@
-function [annoKpx, annoKpy] = getXml(GTpath)
+%% read xml file and get point annotation
+function [annoKpx, annoKpy, scale, type] = getXml(GTpath)
 try
     xDoc = xmlread(GTpath);
 catch
@@ -7,7 +8,11 @@ end
 
 annotationNode = xDoc.getElementsByTagName('annotation').item(0);
 pointsNode = annotationNode.getElementsByTagName('points').item(0);
+scaleNode = annotationNode.getElementsByTagName('scale').item(0);
+typeNode = annotationNode.getElementsByTagName('type').item(0);
 point_list = pointsNode.getElementsByTagName('point');
+scale = str2num(char(scaleNode.getTextContent()));
+type = char(typeNode.getTextContent());
 n = point_list.getLength;
 annoKpx = zeros(1,n);
 annoKpy = zeros(1,n);

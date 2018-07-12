@@ -1,10 +1,11 @@
-%function data = getData(path)
+function data = getData()
 
+addpath('../evaluation');
 clear;clc;
 
 % check filename num in dir
-img_path = './data/image/';
-anno_path = './data/annotation/';
+img_path = './car-train/image/';
+anno_path = './car-train/annotation/';
 
 dirs = dir([img_path,'*.jpg']);
 dircell = struct2cell(dirs)';
@@ -26,35 +27,22 @@ end
 disp('loading...');
 
 for i = 1:size(imgnames)
+    
+    xml_path = [anno_path,filename{i},'.xml'];
+    [annoKpx, annoKpy, scale, type] = getXml(xml_path);
+    m = numel(annoKpx);
 
-    try
-        xDoc = xmlread([anno_path,filename{i},'.xml']);
-    catch
-        error('Failed to read XML file %s.xml',filename{i});
-    end
-
-    % get all elements from xml annotations
-    annotationNode = xDoc.getElementsByTagName('annotation').item(0);
-    scaleNode = annotationNode.getElementsByTagName('scale').item(0);
-    typeNode = annotationNode.getElementsByTagName('type').item(0);
-    pointsNode = annotationNode.getElementsByTagName('points').item(0);
-    point_list = pointsNode.getElementsByTagName('point');
-    scale = str2num(char(scaleNode.getTextContent()));
-    typea = char(typeNode.getTextContent());
-
-    id = cell(1,4);xaxis = cell(1,4);yaxis = cell(1,4);
-    for j = 0:point_list.getLength-1
-        pointNode = point_list.item(j);
-        idText = pointNode.getElementsByTagName('id').item(0).getTextContent();
-        id{j+1} = str2num(char(idText));
-        xaxis{j+1} = str2num(char(pointNode.getElementsByTagName('xaxis').item(0).getTextContent()));
-        yaxis{j+1} = str2num(char(pointNode.getElementsByTagName('yaxis').item(0).getTextContent()));
+    id = cell(1,m);xaxis = cell(1,m);yaxis = cell(1,m);
+    for j = 1:m
+        id{j} = j;
+        xaxis{j} = annoKpx(i);
+        yaxis{j} = annoKpy(j);
         
     end
     point = struct('id',id,'x',xaxis,'y',yaxis);
     annopoints.point = point;
     anno_images{i}.name = [filename{i}, '.jpg'];
-    annoroad{i} = struct('type',typea,'scale',scale,'annopoints',annopoints);
+    annoroad{i} = struct('type',type,'scale',scale,'annopoints',annopoints);
     
     % set train/val 
     img_train(i) = 0;
@@ -65,5 +53,5 @@ data = struct('annolist',annolist,'img_train',img_train);
 
 % put all data into struct data
 
-save('./data/rawdata.mat','data');
+save('./car-train/rawdata.mat','data');
 disp('over');

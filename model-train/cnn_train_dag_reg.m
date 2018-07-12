@@ -63,7 +63,7 @@ end
 % -------------------------------------------------------------------------
 
 modelPath = @(ep) fullfile(opts.expDir, sprintf('net-epoch-%d.mat', ep));
-modelFigPath = fullfile(opts.expDir, 'net-train.pdf') ;
+modelFigPath = fullfile(opts.expDir, 'net-train.png') ;
 
 start = opts.continue * findLastCheckpoint(opts.expDir) ;
 if start >= 1
@@ -150,14 +150,14 @@ for epoch=start+1:opts.numEpochs
         end
       end
       subplot(1,numel(plots),find(strcmp(p,plots))) ;
-      plot(1:epoch, values','o-') ;
+      plot(1:epoch, values','*-') ;
       xlabel('epoch') ;
       title(p) ;
       legend(leg{:}) ;
       grid on ;
     end
     drawnow ;
-    print(1, modelFigPath, '-dpdf') ;
+    print(1, modelFigPath, '-dpng') ;
   end
 end
 

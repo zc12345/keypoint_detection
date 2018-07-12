@@ -3,3 +3,11 @@
 /getData/data
 /models
 
+# middle files
+*.jpg
+*.asv
+*.xml
+*.m~
+*.txt
+*.png
+*.mat

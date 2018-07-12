@@ -1,7 +1,7 @@
 clearvars;close all;clc;
 % PATH CONFIG
-data_path = './data/';
-img_path = './data/image/';
+data_path = './car-train/';
+img_path = './car-train/image/';
 
 % ============================MAIN
 
@@ -16,7 +16,7 @@ baseW = 300;
 sets_train = zeros(length(data.img_train),1);%!data.img_train
 cnt = 0;
 cnt_test = 0;
-point_num = 16;
+point_num = 8;
 
 %h = waitbar(0,'processing dataset......');
 for i = 1:length(data.img_train)%!data.img_train

@@ -1,3 +1,4 @@
+%% using interpret function, generate boundary lines according to keypoints
 function [interpOut1, interpOut2] = gen_line(annoKpx, annoKpy)
 
 out1 = single(annoKpx');

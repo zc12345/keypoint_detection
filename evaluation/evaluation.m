@@ -1,8 +1,8 @@
 function evaluation()
 
-GTdir = '../data/val-sequence/annotation/';
-predDir = '../data/val-sequence/prediction/';
-imgDir = '../data/val-sequence/image/';
+GTdir = '../getData/data/val-sequence/annotation/';
+predDir = '../getData/data/val-sequence/prediction/';
+imgDir = '../getData/data/val-sequence/image/';
 batch_eval(GTdir, predDir, imgDir);
 
 end
@@ -29,7 +29,7 @@ end
 
 function loss = single_eval(GTpath, predPath, imgPath)
 
-[annoKpx, annoKpy] = getXml(GTpath);
+[annoKpx, annoKpy, ~] = getXml(GTpath);
 [GTkpx, GTkpy] = gen_line(annoKpx, annoKpy);
 [predKpx, predKpy] = textread(predPath, '%d%d');
 loss = caculate_loss(GTkpx, GTkpy, predKpx, predKpy);

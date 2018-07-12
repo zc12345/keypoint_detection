@@ -1,4 +1,4 @@
-# 1. process data
+ge  # 1. process data
 ```
 $ cd <root>/getData
 $ run getData.m

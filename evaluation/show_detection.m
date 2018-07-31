@@ -3,14 +3,14 @@ function show_detection()
 close all;clear;clc;
 
 addpath('../');
-addpath('model-train');
+addpath('../model-train');
 
 USE_GPU = 0; % 1 for GPU
 
 model_fn = '../models/keypoint-netv4-16points.mat';
 matconvnet_dir = '../../matconvnet/';
-img_dir = '../data/val-sequence/image/';
-prediction_dir = '../data/val-sequence/prediction/';
+img_dir = '../getData/road/val/image/';
+prediction_dir = '../getData/road/val/prediction/';
 
 if exist(prediction_dir) == 0
     mkdir(prediction_dir);

@@ -32,6 +32,7 @@ function loss = single_eval(GTpath, predPath, imgPath)
 [annoKpx, annoKpy, ~] = getXml(GTpath);
 [GTkpx, GTkpy] = gen_line(annoKpx, annoKpy);
 [predKpx, predKpy] = textread(predPath, '%d%d');
+[predKpx, predKpy] = gen_line(predKpx, predKpy);
 loss = caculate_loss(GTkpx, GTkpy, predKpx, predKpy);
 disp(sprintf('loss=%f',loss));
 %show(imgPath, GTkpx, GTkpy, predKpx, predKpy);

@@ -4,8 +4,9 @@ addpath('../evaluation');
 clear;clc;
 
 % check filename num in dir
-img_path = './car-train/image/';
-anno_path = './car-train/annotation/';
+img_path = '../../data/data/image/';
+anno_path = '../../data/data/annotation/';
+point_select = [1 3 5 8 9 12 14 16];
 
 dirs = dir([img_path,'*.jpg']);
 dircell = struct2cell(dirs)';
@@ -30,14 +31,16 @@ for i = 1:size(imgnames)
     
     xml_path = [anno_path,filename{i},'.xml'];
     [annoKpx, annoKpy, scale, type] = getXml(xml_path);
-    m = numel(annoKpx);
+    %m = numel(annoKpx);
+	m = numel(point_select);
 
     id = cell(1,m);xaxis = cell(1,m);yaxis = cell(1,m);
     for j = 1:m
         id{j} = j;
-        xaxis{j} = annoKpx(i);
-        yaxis{j} = annoKpy(j);
-        
+        %xaxis{j} = annoKpx(j);
+        %yaxis{j} = annoKpy(j);
+        xaxis{j} = annoKpx(point_select(j));
+        yaxis{j} = annoKpy(point_select(j));
     end
     point = struct('id',id,'x',xaxis,'y',yaxis);
     annopoints.point = point;
@@ -53,5 +56,5 @@ data = struct('annolist',annolist,'img_train',img_train);
 
 % put all data into struct data
 
-save('./car-train/rawdata.mat','data');
+save('./rawdata.mat','data');
 disp('over');

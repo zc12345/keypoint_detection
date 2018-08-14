@@ -2,13 +2,14 @@ clearvars;
 % split data into train dataset & validation dataset
 imgSize=[256, 256];
 %[img_final, ptsAll, sets_train, sets_train_idx]
-load(sprintf('./data/extractedData_%d_%d',imgSize(1),imgSize(2)));
+load(sprintf('../data/extractedData_%d_%d',imgSize(1),imgSize(2)));
 
 ptsAll_train=[];
 imgPath_train=[];
 ptsAll_test=[];
 imgPath_test=[];
-point_num = 8;
+point_select = [1 3 5 8 9 12 14 16];
+point_num = numel(point_select);
 idx=1:point_num;
 
 for i=1:numel(sets_train_idx)
